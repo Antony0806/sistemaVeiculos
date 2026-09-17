@@ -19,5 +19,4 @@ public class Veiculo {
         int anoAtual = LocalDate.now().getYear();
         return anoAtual - this.ano;
     }
-
 }
