@@ -2,7 +2,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 List<Veiculo> veiculos = new ArrayList<>();
+
 void main(){
+    boolean executando = true;
+    
+    while (executando) {
     String rMenu = IO.readln("""
             ===== CADASTRO DE VEÍCULOS =====
             1 - CADASTRAR VEÍCULO
@@ -14,13 +18,20 @@ void main(){
         switch(rMenu){
             case "1":
                 cadastrarVeiculos();
+                break;
             case "2":
                 listarVeiculos();
+                break;
             case "3":
                 consultarVeiculos();
-            case "0":
                 break;
-            default -> IO.println("Opção Inválida");
+            case "0":
+                executando = false;
+                IO.println("Sistema encerrado.")
+                break;
+            default:
+                IO.println("Opção Inválida");
+        }
 
     }        
 }
@@ -33,11 +44,27 @@ public void cadastrarVeiculos(){
     String modelo = IO.readln("Qual é o modelo do seu veículo? ");
     int ano = Integer.parseInt(IO.readln("Qual é o ano do seu veículo? "));
     String placa = IO.readln("Qual é a placa do seu veículo? ");
+
+    for (Veiculo veiculo : veiculos) {
+        if (veiculo.placa.equalsIgnoreCase(placa)) {
+            IO.println("Já existe um veículo cadastrado com essa placa.")
+            return;
+        }
+    }
     
     Veiculo novoVeiculo = new Veiculo(marca, modelo, ano, placa);
+    
+    if (novoVeiculo.ano < 1900 || novoVeiculo.calculaTempoUso() < -1) {
+        IO.println("Ano inválido.");
+        return;
+    }
+
     veiculos.add(novoVeiculo);
 
     IO.println("Veículo cadastrado com sucesso!");
+
+    }
+
 }
 
 public void listarVeiculos(){
