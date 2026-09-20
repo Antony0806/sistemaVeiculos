@@ -27,7 +27,7 @@ void main(){
                 break;
             case "0":
                 executando = false;
-                IO.println("Sistema encerrado.")
+                IO.println("Sistema encerrado.");
                 break;
             default:
                 IO.println("Opção Inválida");
@@ -43,18 +43,18 @@ public void cadastrarVeiculos(){
     String marca = IO.readln("Qual é a marca do seu veículo? ");
     String modelo = IO.readln("Qual é o modelo do seu veículo? ");
     int ano = Integer.parseInt(IO.readln("Qual é o ano do seu veículo? "));
-    String placa = IO.readln("Qual é a placa do seu veículo? ");
+    String placa = IO.readln("Qual é a placa do seu veículo? ").trim();
 
     for (Veiculo veiculo : veiculos) {
-        if (veiculo.placa.equalsIgnoreCase(placa)) {
-            IO.println("Já existe um veículo cadastrado com essa placa.")
+        if (veiculo.getPlaca().equalsIgnoreCase(placa)) {
+            IO.println("Já existe um veículo cadastrado com essa placa.");
             return;
         }
     }
     
     Veiculo novoVeiculo = new Veiculo(marca, modelo, ano, placa);
     
-    if (novoVeiculo.ano < 1900 || novoVeiculo.calculaTempoUso() < -1) {
+    if (novoVeiculo.getAno() < 1900 || novoVeiculo.calculaTempoUso() < -1) {
         IO.println("Ano inválido.");
         return;
     }
@@ -65,8 +65,6 @@ public void cadastrarVeiculos(){
 
     }
 
-}
-
 public void listarVeiculos(){
     IO.println(" ===== VEÍCULOS CADASTRADOS ===== ");
 
@@ -75,10 +73,10 @@ public void listarVeiculos(){
         return;
     }
     for (Veiculo veiculo : veiculos) {
-        IO.println("Marca: " + veiculo.marca);
-        IO.println("Modelo: " + veiculo.modelo);
-        IO.println("Ano: " + veiculo.ano);
-        IO.println("Placa: " + veiculo.placa);
+        IO.println("Marca: " + veiculo.getMarca());
+        IO.println("Modelo: " + veiculo.getModelo());
+        IO.println("Ano: " + veiculo.getAno());
+        IO.println("Placa: " + veiculo.getPlaca());
         IO.println("---------------------------------");
     }
 
@@ -86,20 +84,20 @@ public void listarVeiculos(){
 
 public void consultarVeiculos(){
 
-    String placaConsulta = IO.readln("Digite a placa do veículo que deseja consultar: ");
+    String placaConsulta = IO.readln("Digite a placa do veículo que deseja consultar: ").trim();
 
     for (Veiculo veiculo: veiculos) {
 
-        if (veiculo.placa.equalsIgnoreCase(placaConsulta)) {
+        if (veiculo.getPlaca().equalsIgnoreCase(placaConsulta)) {
             IO.println("===== VEÍCULO ENCONTRADO =====");
-            IO.println("Marca: " + veiculo.marca);
-            IO.println("Modelo: " + veiculo.modelo);
-            IO.println("Ano: " + veiculo.ano);
-            IO.println("Placa: " + veiculo.placa);
+            IO.println("Marca: " + veiculo.getMarca());
+            IO.println("Modelo: " + veiculo.getModelo());
+            IO.println("Ano: " + veiculo.getAno());
+            IO.println("Placa: " + veiculo.getPlaca());
             return;
         }
     }
     
-    IO.println("Nenhum veículo encontrado com essa placa.")
+    IO.println("Nenhum veículo encontrado com essa placa.");
 
 }
