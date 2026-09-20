@@ -7,7 +7,7 @@ public class Veiculo {
     public int ano;
     public String placa;
 
-    public Veiculo(String marca, String modelo, int Ano, String placa){
+    public Veiculo(String marca, String modelo, int ano, String placa){
         this.marca = marca;
         this.modelo = modelo;
         this.ano = ano;

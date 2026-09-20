@@ -59,4 +59,20 @@ public void listarVeiculos(){
 
 public void consultarVeiculos(){
 
+    String placaConsulta = IO.readln("Digite a placa do veículo que deseja consultar: ");
+
+    for (Veiculo veiculo: veiculos) {
+
+        if (veiculo.placa.equalsIgnoreCase(placaConsulta)) {
+            IO.println("===== VEÍCULO ENCONTRADO =====");
+            IO.println("Marca: " + veiculo.marca);
+            IO.println("Modelo: " + veiculo.modelo);
+            IO.println("Ano: " + veiculo.ano);
+            IO.println("Placa: " + veiculo.placa);
+            return;
+        }
+    }
+    
+    IO.println("Nenhum veículo encontrado com essa placa.")
+
 }
